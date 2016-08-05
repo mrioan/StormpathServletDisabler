@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <filter>
+        <filter-name>StormpathFilter</filter-name>
+        <filter-class>com.stormpath.sdk.examples.servlet.override.StormpathSwitcherFilter</filter-class>
+    </filter>
+
+    <context-param>
+        <param-name>stormpathServletContextClientFactoryClass</param-name>
+        <param-value>com.stormpath.sdk.examples.servlet.override.SwitcherServletContextClientFactory</param-value>
+    </context-param>
+    <context-param>
+        <param-name>stormpathApplicationResolverClass</param-name>
+        <param-value>com.stormpath.sdk.examples.servlet.override.SwitcherApplicationResolver</param-value>
+    </context-param>
+
+    <filter-mapping>
+        <filter-name>StormpathFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>WelcomeController</servlet-name>
+        <servlet-class>com.stormpath.sdk.examples.servlet.WelcomeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WelcomeController</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DashboardController</servlet-name>
+        <servlet-class>com.stormpath.sdk.examples.servlet.DashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardController</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AjaxLoginController</servlet-name>
+        <servlet-class>com.stormpath.sdk.examples.servlet.AjaxLoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjaxLoginController</servlet-name>
+        <url-pattern>/ajaxLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/assets/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <cookie-config>
+            <max-age>3600</max-age>
+        </cookie-config>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>welcome</welcome-file>
+    </welcome-file-list>
+</web-app>
